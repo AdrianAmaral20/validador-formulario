@@ -4,6 +4,9 @@ let b7Validator = {
     let send = true;
 
     let inputs = form.querySelectorAll('input');
+
+    b7Validator.clearErrors();
+
     for(let i=0;i<inputs.length;i++) {
       let input = inputs[i];
       let check = b7Validator.checkInput(input);
@@ -47,6 +50,18 @@ let b7Validator = {
     errorElement.innerHTML = error;
 
     input.parentElement.insertBefore(errorElement, input.ElementSibling);
+  },
+  clearErrors:() => {
+    let inputs = form.querySelectorAll('input');
+    for(let i=0;i<inputs.length;i++) {
+      inputs[i].style = '';
+      inputs[i].classList.remove('error-input')
+    }
+
+    let errorElements = document.querySelectorAll('.error');
+    for(let i=0;i<errorElements.length;i++) {
+      errorElements[i].remove();
+    }
   }
 }
 
