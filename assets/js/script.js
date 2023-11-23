@@ -9,7 +9,7 @@ let b7Validator = {
       let check = b7Validator.checkInput(input);
       if(check !== true) {
         send = false;
-        console.log(check)
+        b7Validator.showError(input, check);
       }
     }
 
@@ -37,6 +37,16 @@ let b7Validator = {
     }
 
     return true;
+  },
+  showError:(input, error) => {
+    input.classList.add('error-input')
+    input.style.borderColor = '#ff0000';
+
+    let errorElement = document.createElement('div');
+    errorElement.classList.add('error');
+    errorElement.innerHTML = error;
+
+    input.parentElement.insertBefore(errorElement, input.ElementSibling);
   }
 }
 
